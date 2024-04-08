@@ -88,32 +88,21 @@ def BFS(start, goal):
             break
         # Iterate over every move
         for move in MOVES:
+            # Create copy of n state because if not then it will be manipulated by moves below
+            puzzle = Puzzle(n.copy())
             if move == "UP":
-                # Create copy of n state because if not then it will be manipulated by moves below
-                puzzle = Puzzle(n.copy())
-                if puzzle.move_up() and puzzle.matrix not in visited:
-                    queue.append(puzzle.matrix)
-                    visited.append(puzzle.matrix)
-                    # Append current state, parent of current state, move used to achieve this state
-                    parent.append((puzzle.matrix, n, move))
+                puzzle.move_up()
             elif move == "DOWN":
-                puzzle = Puzzle(n.copy())
-                if puzzle.move_down() and puzzle.matrix not in visited:
-                    queue.append(puzzle.matrix)
-                    visited.append(puzzle.matrix)
-                    parent.append((puzzle.matrix, n, move))
+                puzzle.move_down()
             elif move == "RIGHT":
-                puzzle = Puzzle(n.copy())
-                if puzzle.move_right() and puzzle.matrix not in visited:
-                    queue.append(puzzle.matrix)
-                    visited.append(puzzle.matrix)
-                    parent.append((puzzle.matrix, n, move))
+                puzzle.move_right()
             elif move == "LEFT":
-                puzzle = Puzzle(n.copy())
-                if puzzle.move_left() and puzzle.matrix not in visited:
-                    queue.append(puzzle.matrix)
-                    visited.append(puzzle.matrix)
-                    parent.append((puzzle.matrix, n, move))
+                puzzle.move_left()
+            if puzzle.matrix not in visited:
+                queue.append(puzzle.matrix)
+                visited.append(puzzle.matrix)
+                # Append current state, parent of current state, move used to achieve this state
+                parent.append((puzzle.matrix, n, move))
     path = []
     if path_found:
         n = goal # Start searching from goal
