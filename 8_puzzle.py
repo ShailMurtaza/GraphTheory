@@ -2,10 +2,10 @@
 
 class Puzzle:
     MOVES = {
-            "UP": -3,
-            "DOWN": 3,
-            "RIGHT": 1,
-            "LEFT": -1
+            "UP": -3, # Space should move -3 steps to go up
+            "DOWN": 3, # Space should move +3 steps to go down
+            "RIGHT": 1, # Space should move +1 step to go right
+            "LEFT": -1 # Space should move -1 step to go left
     }
     def __init__(self, matrix):
         self.matrix = matrix
@@ -59,7 +59,7 @@ class Puzzle:
         self.space_swap(space_index, index)
         return True
 
-
+    # Pretty Print Puzzle
     def print(self):
         print("▁"*9)
         for i, x in enumerate(self.matrix):
@@ -122,11 +122,11 @@ def BFS(start, goal):
 
 
 
-start = [
-        1, 2, 3,
-        7, 4, 5,
-        0, 8, 6
-        ]
+# start = [
+#         1, 2, 3,
+#         7, 4, 5,
+#         0, 8, 6
+#         ]
 
 
 start = [7, 4, 5, 8, 3, 1, 2, 0, 6]
