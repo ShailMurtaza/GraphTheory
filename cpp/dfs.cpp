@@ -24,7 +24,7 @@ vector<int> DFS(vector<vector<pint>> graph, pint start) {
 
     stack.push_back(start); // add start to stack
     visited.push_back(start); // add start in visited
-    parent[0] = -1; // Set parent of 0 node as -1. Which means no parent
+    parent[start] = -1; // Set parent of 0 node as -1. Which means no parent
     while (!stack.empty()) {
         // Save last element of stack and remove it. Just like stack
         pint v = stack.back();
