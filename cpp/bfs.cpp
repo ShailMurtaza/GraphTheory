@@ -1,42 +1,33 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
+#include <queue>
+#include <unordered_map>
+#include <unordered_set>
 #include "graph.h"
-
 using namespace std;
 
 
-// Check if num exist in vector
-bool find_num(vector<pint> arr, pint num) {
-    auto it = find(arr.begin(), arr.end(), num);
-    if (it == arr.end()) {
-        return false;
-    }
-    return true;
-}
-
 // return parents as vector array
-vector<int> DFS(vector<vector<pint>> graph, pint start) {
-    vector<pint> stack; // Stack
-    vector<pint> visited; // Array of visited
-    vector<int> parent; // Array of parents
-    parent.resize(graph.size()); // Resize parent vector to number of vertices
+unordered_map<int, int> DFS(unordered_map<int, vector<int>> graph, int start) {
+    queue<int> q; // Stack
+    unordered_set<int> visited; // Array of visited
+    unordered_map<int, int> parent; // Array of parents
 
-    stack.push_back(start); // add start to stack
-    visited.push_back(start); // add start in visited
+    q.push(start); // add start to stack
+    visited.insert(start); // add start in visited
     parent[start] = -1; // Set parent of start node as -1. Which means no parent
-    while (!stack.empty()) {
-        // Save last element of stack and remove it. Just like stack
-        pint v = stack[0];
-        stack.erase(stack.begin());
+    while (!q.empty()) {
+        // Save first element of queue and remove it.
+        int v = q.front();
+        q.pop();
 
         cout << v << "->{";
         // Itereate over all neighbors of node "v"
         for (pint i=0;i<graph[v].size();i++) {
-            pint neighbor = graph[v][i];
-            if (!find_num(visited, neighbor)) {
-                stack.push_back(neighbor);
-                visited.push_back(neighbor);
+            int neighbor = graph[v][i];
+            if (visited.find(neighbor) == visited.end()) {
+                q.push(neighbor);
+                visited.insert(neighbor);
                 parent[neighbor] = v;
             }
             cout << neighbor << ", ";
@@ -55,10 +46,10 @@ int main() {
     graph.add(2, 5);
     graph.add(3, 5);
 
-    vector parents = DFS(graph.graph, 0);
+    unordered_map<int, int> parents = DFS(graph.graph, 0);
     cout << "PARENTS: " << endl;
-    for (pint i=0;i<parents.size();i++) {
-        cout << i << " -> " << parents[i] << endl;
+    for(const auto pair : parents) {
+        cout << pair.first << " --> " << pair.second << endl;
     }
 }
 
