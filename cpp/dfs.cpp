@@ -1,18 +1,18 @@
 #include <iostream>
 #include <vector>
 #include <stack>
-#include <unordered_set>
-#include <unordered_map>
+#include <set>
+#include <map>
 #include "graph.h"
 
 using namespace std;
 
 
 // return parents as vector array
-unordered_map<int, int> DFS(unordered_map <int, vector<int>>graph, int start) {
+map<int, int> DFS(map <int, vector<int>>graph, int start) {
     stack<int> stack; // Stack
-    unordered_set<int> visited; // Array of visited
-    unordered_map<int, int> parent; // Array of parents
+    set<int> visited; // Array of visited
+    map<int, int> parent; // Array of parents
 
     stack.push(start); // add start to stack
     visited.insert(start); // add start in visited
@@ -48,7 +48,7 @@ int main() {
     graph.add(3, 5);
 
     // graph.print();
-    unordered_map<int, int> parents = DFS(graph.graph, 0);
+    map<int, int> parents = DFS(graph.graph, 0);
     cout << "PARENTS: " << endl;
     for (const auto pair : parents) {
         cout << pair.first << " -> " << pair.second << endl;

@@ -1,12 +1,12 @@
 #include <iostream>
 #include <vector>
-#include <unordered_map>
+#include <map>
 using namespace std;
 
 typedef unsigned int pint;
 class Graph {
     public:
-        unordered_map <int, vector<int>> graph;
+        map <int, vector<int>> graph;
 
         void add (pint a, pint b) {
             graph[a].push_back(b);

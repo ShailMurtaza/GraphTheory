@@ -1,17 +1,17 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-#include <unordered_map>
+#include <map>
 #include <unordered_set>
 #include "graph.h"
 using namespace std;
 
 
 // return parents as vector array
-unordered_map<int, int> DFS(unordered_map<int, vector<int>> graph, int start) {
+map<int, int> DFS(map<int, vector<int>> graph, int start) {
     queue<int> q; // Stack
     unordered_set<int> visited; // Array of visited
-    unordered_map<int, int> parent; // Array of parents
+    map<int, int> parent; // Array of parents
 
     q.push(start); // add start to stack
     visited.insert(start); // add start in visited
@@ -46,7 +46,7 @@ int main() {
     graph.add(2, 5);
     graph.add(3, 5);
 
-    unordered_map<int, int> parents = DFS(graph.graph, 0);
+    map<int, int> parents = DFS(graph.graph, 0);
     cout << "PARENTS: " << endl;
     for(const auto pair : parents) {
         cout << pair.first << " --> " << pair.second << endl;
